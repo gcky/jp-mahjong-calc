@@ -1,5 +1,4 @@
 function calcPoints() {
-    console.log("lol")
     let fu = 20;
     if ($('#single-call').prop('checked')) {
         fu += 2;
@@ -41,22 +40,24 @@ function calcPoints() {
     }
     if ($('input[name=winner]:checked').val() == 'jong') {
         if ($('#lon-self').prop('checked')) {
-            haanScore = -2*basicPoints;
-            winnerScore = 6*basicPoints;
+            haanScore = -Math.ceil((2*basicPoints)/100)*100;
+            winnerScore = -3*haanScore;
         } else {
-            chutchungScore = -6*basicPoints;
-            winnerScore = 6*basicPoints;
+            chutchungScore = -Math.ceil((6*basicPoints)/100)*100;
+            winnerScore = -chutchungScore;
         }
     } else {
         if ($('#lon-self').prop('checked')) {
-            jongScore = -2*basicPoints;
-            haanScore = -basicPoints;
-            winnerScore = 4*basicPoints;
+            jongScore = -Math.ceil((2*basicPoints)/100)*100;
+            haanScore = -Math.ceil(basicPoints/100)*100;
+            winnerScore = -jongScore-haanScore;
         } else {
-            chutchungScore = -4*basicPoints;
-            winnerScore = 4*basicPoints;
+            chutchungScore = -Math.ceil((4*basicPoints)/100)*100;
+            winnerScore = -chutchungScore;
         }
     }
+    console.log(fu)
+    console.log(basicPoints)
     displayGameResults(winnerScore, jongScore, haanScore, chutchungScore);
 }
 
