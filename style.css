@@ -83,7 +83,6 @@ label {
     cursor: pointer;
     border: 1px solid rgba(0,0,0,.3);
     border-radius: 10px;
-    background-color: rgba(0,0,0,.05);
     height: 30px;
     font-size: 1.2rem;
     font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
@@ -91,9 +90,11 @@ label {
 
 #calc-btn {
     font-weight: bold;
-    width: 50%;
+    background-color: rgba(0,0,0,.05);
+    width: 40%;
 }
 
 #reset-btn {
-    width: 30%;
+    background: none;
+    width: 90px;
 }
