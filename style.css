@@ -39,6 +39,11 @@ input[type="number"] {
     padding: 10px;
 }
 
+.hakgong tr td select {
+    width: 70px;
+    height: 30px;
+}
+
 .game-results {
     padding-top: 30px;
     font-size: 1.5rem;
@@ -71,4 +76,24 @@ label {
     padding: 8px;
     margin: 0 5px;
     white-space: nowrap;
+}
+
+#calc-btn, #reset-btn {
+    outline: none;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.05);
+    height: 30px;
+    font-size: 1.2rem;
+    font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+}
+
+#calc-btn {
+    font-weight: bold;
+    width: 40%;
+}
+
+#reset-btn {
+    width: 20%;
 }

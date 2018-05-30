@@ -22,9 +22,10 @@
                 <label><input type="radio" id="haan" name="winner" value="haan" checked>閒</label>
             </div>
             <div class="options">
-                <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻
+                <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻 
             </div>
             <div class="options">
+                <label><input type="checkbox" id="seven-pairs" onclick="sevenPairsClicked()"> 七對子</label>
                 <label><input type="checkbox" id="single-call"> 偏章/卡窿/單釣叫糊</label>
             </div>
             <div class="options">
@@ -33,11 +34,11 @@
                 <label><input type="checkbox" id="three-dollar-eye" onclick="threeDollarClicked()"> 三元眼</label>
             </div>
             <div class="options">
-                <label><input type="checkbox" id="door-ching"> 門前清</label>
                 <label><input type="checkbox" id="lon-self"> 自摸</label>
+                <label><input type="checkbox" id="door-ching"> 門前清</label>
                 <label><input type="checkbox" id="ping-flower"> 平和/嶺上開花</label>
             </div>
-            <table class="hakgong">
+            <table class="hakgong" onchange="hakgongChanged()">
                 <thead>
                     <th></th>
                     <th>中張(2-8)</th>
@@ -128,8 +129,8 @@
                     </td>
                 </tr>
             </table>
-            <button type="button" onclick="calcPoints()">計分</button>
-            <button type="button" onclick="reset()">重設</button>
+            <button type="button" id="calc-btn" onclick="calcPoints()">計分</button>
+            <button type="button" id="reset-btn" onclick="reset()">重設</button>
             <!-- <h1 id="basic-points">POINTS</h1> -->
             <table class="game-results">
                 <tr>
@@ -139,7 +140,7 @@
                 </tr>
                 <tr class="chutchung-row">
                     <td>😡</td>
-                    <td>出沖者</td>
+                    <td>出沖家</td>
                     <td id="chutchung-score"></td>
                 </tr>
                 <tr class="jong-row">

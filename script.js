@@ -1,43 +1,61 @@
 function calcPoints() {
+    let fan = Number($('#fan').val());
     let fu = 20;
-    if ($('#single-call').prop('checked')) {
-        fu += 2;
+    if ($('#seven-pairs').prop('checked')) {
+        fan -= 1;
+        fu = 50;
+    } else {
+        if ($('#single-call').prop('checked')) {
+            fu += 2;
+        }
+        if ($('#door-ching').prop('checked') && 
+            !$('#lon-self').prop('checked')) {
+            fu += 10;
+        }
+        if ($('#lon-self').prop('checked') && 
+            !$('#ping-flower').prop('checked') &&
+            !$('#door-ching').prop('checked')) {
+            fu += 2;
+        }
+        if ($('#own-wind-eye').prop('checked')) {
+            fu += 2;
+        }
+        if ($('#board-wind-eye').prop('checked')) {
+            fu += 2;
+        }
+        if ($('#three-dollar-eye').prop('checked')) {
+            fu += 2;
+        }
+        fu += 2*$('#minghak28').val();
+        fu += 4*$('#minghak19').val();
+        fu += 4*$('#amhak28').val();
+        fu += 8*$('#amhak19').val();
+        fu += 8*$('#minggong28').val();
+        fu += 16*$('#minggong19').val();
+        fu += 16*$('#amgong28').val();
+        fu += 32*$('#amgong19').val();
+        fu = Math.ceil(fu/10)*10;
+        if (fan == 1 && fu == 20) {
+            fu = 30;
+        }
     }
-    if ($('#door-ching').prop('checked') && 
-        !$('#lon-self').prop('checked')) {
-        fu += 10;
-    }
-    if ($('#lon-self').prop('checked') && 
-        !$('#ping-flower').prop('checked') &&
-        !$('#door-ching').prop('checked')) {
-        fu += 2;
-    }
-    if ($('#own-wind-eye').prop('checked')) {
-        fu += 2;
-    }
-    if ($('#board-wind-eye').prop('checked')) {
-        fu += 2;
-    }
-    if ($('#three-dollar-eye').prop('checked')) {
-        fu += 2;
-    }
-    fu += 2*$('#minghak28').val();
-    fu += 4*$('#minghak19').val();
-    fu += 4*$('#amhak28').val();
-    fu += 8*$('#amhak19').val();
-    fu += 8*$('#minggong28').val();
-    fu += 16*$('#minggong19').val();
-    fu += 16*$('#amgong28').val();
-    fu += 32*$('#amgong19').val();
-    fu = Math.ceil(fu/10)*10;
-    const fan = Number($('#fan').val());
-    let basicPoints = 0;
+    let basicPoints = fu*Math.pow(2, fan+2);
     let winnerScore = 0;
     let jongScore = null;
     let haanScore = null;
     let chutchungScore = null;
-    if (fan < 5) {
-        basicPoints = fu*Math.pow(2, fan+2)
+    if (fan == 6 || fan == 7) {
+        basicPoints = 3000;
+    } else if (fan >= 8 && fan <= 10) {
+        basicPoints = 4000;
+    } else if (fan == 11 || fan == 12) {
+        basicPoints = 6000;
+    } else if (fan > 12) {
+        basicPoints = 8000;
+    } else if (fan == 5 || basicPoints > 2000) {
+        basicPoints = 2000;
+    } else if (basicPoints < 2000) {
+        basicPoints = fu*Math.pow(2, fan+2);
     }
     if ($('input[name=winner]:checked').val() == 'jong') {
         if ($('#lon-self').prop('checked')) {
@@ -90,4 +108,14 @@ function windEyeClicked() {
         $('#board-wind-eye').prop('checked')) {
         $('#three-dollar-eye').prop('checked', false);
     }
+}
+
+function sevenPairsClicked() {
+    if ($('#seven-pairs').prop('checked')) {
+            $('.hakgong tr td select option:first-child').prop('selected', true);
+    }
+}
+
+function hakgongChanged() {
+    $('#seven-pairs').prop('checked', false);
 }
