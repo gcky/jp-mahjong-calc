@@ -74,7 +74,7 @@ function reset() {
     $('#jong').prop('checked', false);
     $('#haan').prop('checked', true);
     $('#fan').val(1);
-    $('.hakgong tr td input').val('');
+    $('.hakgong tr td select option:first-child').prop('selected', true);
     displayGameResults(null, null, null, null);
 }
 
