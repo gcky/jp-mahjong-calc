@@ -8,7 +8,8 @@ function calcPoints() {
         fu += 10;
     }
     if ($('#lon-self').prop('checked') && 
-        !$('#ping-flower').prop('checked')) {
+        !$('#ping-flower').prop('checked') &&
+        !$('#door-ching').prop('checked')) {
         fu += 2;
     }
     if ($('#own-wind-eye').prop('checked')) {
@@ -50,7 +51,7 @@ function calcPoints() {
         if ($('#lon-self').prop('checked')) {
             jongScore = -Math.ceil((2*basicPoints)/100)*100;
             haanScore = -Math.ceil(basicPoints/100)*100;
-            winnerScore = -jongScore-haanScore;
+            winnerScore = -jongScore-2*haanScore;
         } else {
             chutchungScore = -Math.ceil((4*basicPoints)/100)*100;
             winnerScore = -chutchungScore;
@@ -62,7 +63,7 @@ function calcPoints() {
 }
 
 function displayGameResults(winner, jong, haan, chutchong) {
-    $('#winner-score').html('+'+winner);
+    $('#winner-score').html(winner ? '+'+winner : '');
     $('#chutchung-score').html(chutchong);
     $('#jong-score').html(jong);
     $('#haan-score').html(haan);
@@ -70,4 +71,5 @@ function displayGameResults(winner, jong, haan, chutchong) {
 
 function reset() {
     $('input:checkbox').prop('checked', false);
+    displayGameResults(null, null, null, null);
 }
