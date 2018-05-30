@@ -71,5 +71,9 @@ function displayGameResults(winner, jong, haan, chutchong) {
 
 function reset() {
     $('input:checkbox').prop('checked', false);
+    $('#jong').prop('checked', false);
+    $('#haan').prop('checked', true);
+    $('#fan').val(1);
+    $('.hakgong tr td input').val('');
     displayGameResults(null, null, null, null);
 }
