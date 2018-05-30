@@ -28,9 +28,9 @@
                 <label><input type="checkbox" id="single-call"> 偏章/卡窿/單釣叫糊</label>
             </div>
             <div class="options">
-                <label><input type="checkbox" id="own-wind-eye"> 自風眼</label>
-                <label><input type="checkbox" id="board-wind-eye"> 場風眼</label>
-                <label><input type="checkbox" id="three-dollar-eye"> 三元眼</label>
+                <label><input type="checkbox" id="own-wind-eye" onclick="windEyeClicked()"> 自風眼</label>
+                <label><input type="checkbox" id="board-wind-eye" onclick="windEyeClicked()"> 場風眼</label>
+                <label><input type="checkbox" id="three-dollar-eye" onclick="threeDollarClicked()"> 三元眼</label>
             </div>
             <div class="options">
                 <label><input type="checkbox" id="door-ching"> 門前清</label>
@@ -45,23 +45,87 @@
                 </thead>
                 <tr>
                     <td>明刻</td>
-                    <td><input type="number" id="minghak28" placeholder="0" onclick="this.select()"></td>
-                    <td><input type="number" id="minghak19" placeholder="0" onclick="this.select()"></td>
+                    <td>
+                        <select id="minghak28">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="minghak19">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>暗刻</td>
-                    <td><input type="number" id="amhak28" placeholder="0" onclick="this.select()"></td>
-                    <td><input type="number" id="amhak19" placeholder="0" onclick="this.select()"></td>
+                    <td>
+                        <select id="amhak28">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="amhak19">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>明槓</td>
-                    <td><input type="number" id="minggong28" placeholder="0" onclick="this.select()"></td>
-                    <td><input type="number" id="minggong19" placeholder="0" onclick="this.select()"></td>
+                    <td>
+                        <select id="minggong28">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="minggong19">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>暗槓</td>
-                    <td><input type="number" id="amgong28" placeholder="0" onclick="this.select()"></td>
-                    <td><input type="number" id="amgong19" placeholder="0" onclick="this.select()"></td>
+                    <td>
+                        <select id="amgong28">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="amgong19">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <button type="button" onclick="calcPoints()">計分</button>

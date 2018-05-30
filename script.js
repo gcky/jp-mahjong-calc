@@ -77,3 +77,17 @@ function reset() {
     $('.hakgong tr td input').val('');
     displayGameResults(null, null, null, null);
 }
+
+function threeDollarClicked() {
+    if ($('#three-dollar-eye').prop('checked')) {
+        $('#own-wind-eye').prop('checked', false);
+        $('#board-wind-eye').prop('checked', false);
+    }
+}
+
+function windEyeClicked() {
+    if ($('#own-wind-eye').prop('checked') ||
+        $('#board-wind-eye').prop('checked')) {
+        $('#three-dollar-eye').prop('checked', false);
+    }
+}
