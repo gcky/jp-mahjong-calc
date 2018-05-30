@@ -49,11 +49,20 @@ input[type="number"] {
 }
 
 .game-results tr td:first-child {
-    width: 40%;
-    font-weight: bold;
+    width: 10%;
 }
 .game-results tr td:nth-child(2) {
+    width: 30%;
+    font-weight: bold;
+}
+.game-results tr td:nth-child(3) {
     font-family: Inconsolata, 'Courier New', Courier, monospace;
+}
+#winner-score {
+    color: green;
+}
+#chutchung-score, #jong-score, #haan-score {
+    color: red;
 }
 
 label {
