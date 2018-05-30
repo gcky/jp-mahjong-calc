@@ -70,7 +70,7 @@ input[type="number"] {
     color: red;
 }
 
-label {
+label, .option-link {
     border: 1px solid rgba(0,0,0,.3);
     border-radius: 5px;
     padding: 8px;
@@ -78,10 +78,19 @@ label {
     white-space: nowrap;
 }
 
-#calc-btn, #reset-btn {
+.option-link {
+    margin: 0 0 0 20px;
+    padding: 0 10px;
+}
+
+button {
     outline: none;
     cursor: pointer;
     border: 1px solid rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.05);
+}
+
+#calc-btn, #reset-btn {
     border-radius: 10px;
     height: 30px;
     font-size: 1.2rem;
@@ -90,11 +99,48 @@ label {
 
 #calc-btn {
     font-weight: bold;
-    background-color: rgba(0,0,0,.05);
     width: 40%;
 }
 
 #reset-btn {
     background: none;
     width: 90px;
+}
+
+.fan-container {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    transition: 0.3s ease-out;
+}
+
+.fan-container.show {
+    height: 250px;
+    background-color: rgba(0,0,0,.05);
+    padding: 5px 0;
+    border-radius: 10px;
+}
+
+.fan-block {
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 5px;
+    width: 45%;
+    padding: 3px;
+    margin: 2px;
+}
+
+.fan-block h1 {
+    width: 100%;
+    margin: 0;
+    font-size: .9rem;
+}
+
+.fan-block p {
+    margin: 0;
+    font-size: .8rem;
+}
+
+.yik-full {
+    width: calc(90% + 12px);
 }

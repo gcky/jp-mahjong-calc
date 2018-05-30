@@ -22,7 +22,30 @@
                 <label><input type="radio" id="haan" name="winner" value="haan" checked>閒</label>
             </div>
             <div class="options">
-                <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻 
+                <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻
+                <button class="option-link" onclick="showFanBlocks()">翻數對照表▼</button>
+            </div>
+            <div class="options fan-container">
+                <div class="fan-block">
+                    <h1>一翻</h1>
+                    <p>立直, 一發, 門前清自摸和, 斷幺九, 平和, 一盃口, 役牌, 嶺上開花, 槍槓, 海底撈月, 河底撈魚</p>
+                </div>
+                <div class="fan-block">
+                    <h1>兩翻</h1>
+                    <p>三色同順, 三色同刻, 一氣通貫, 對對和, 三暗刻, 三槓子, 七對子, 混全帶幺九, 混老頭, 小三元, 雙立直</p>
+                </div>
+                <div class="fan-block">
+                    <h1>三翻</h1>
+                    <p>混一色, 純全帶幺九, 二盃口</p>
+                </div>
+                <div class="fan-block">
+                    <h1>六翻</h1>
+                    <p>清一色</p>
+                </div>
+                <div class="fan-block yik-full">
+                    <h1>役滿</h1>
+                    <p>國士無雙, 大三元, 四暗刻, 字一色, 綠一色, 小四喜, 大四喜, 清老頭, 九蓮寶燈, 四槓子, 天和, 地和</p>
+                </div>
             </div>
             <div class="options">
                 <label><input type="checkbox" id="seven-pairs" onclick="sevenPairsClicked()"> 七對子</label>

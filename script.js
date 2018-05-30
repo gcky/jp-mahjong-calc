@@ -119,3 +119,11 @@ function sevenPairsClicked() {
 function hakgongChanged() {
     $('#seven-pairs').prop('checked', false);
 }
+
+function showFanBlocks() {
+    if ($('.options.fan-container').hasClass('show')) {
+        $('.options.fan-container').removeClass('show');
+    } else {
+        $('.options.fan-container').addClass('show');
+    }
+}
