@@ -22,7 +22,7 @@
                 <label><input type="radio" id="haan" name="winner" value="haan" checked>閒</label>
             </div>
             <div class="options">
-                <input type="number" id="fan" value="1"> 翻
+                <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻
             </div>
             <div class="options">
                 <label><input type="checkbox" id="single-call"> 偏章/卡窿/單釣叫糊</label>
@@ -34,8 +34,8 @@
             </div>
             <div class="options">
                 <label><input type="checkbox" id="door-ching"> 門前清</label>
-                <label><input type="checkbox" id="lon-self"> 自摸</label>
                 <label><input type="checkbox" id="ping-flower"> 平和/嶺上開花</label>
+                <label><input type="checkbox" id="lon-self"> 自摸</label>
             </div>
             <table class="hakgong">
                 <thead>
@@ -45,27 +45,46 @@
                 </thead>
                 <tr>
                     <td>明刻</td>
-                    <td><input type="number" id="minghak28" value="0"></td>
-                    <td><input type="number" id="minghak19" value="0"></td>
+                    <td><input type="number" id="minghak28" placeholder="0" onclick="this.select()"></td>
+                    <td><input type="number" id="minghak19" placeholder="0" onclick="this.select()"></td>
                 </tr>
                 <tr>
                     <td>暗刻</td>
-                    <td><input type="number" id="amhak28" value="0"></td>
-                    <td><input type="number" id="amhak19" value="0"></td>
+                    <td><input type="number" id="amhak28" placeholder="0" onclick="this.select()"></td>
+                    <td><input type="number" id="amhak19" placeholder="0" onclick="this.select()"></td>
                 </tr>
                 <tr>
                     <td>明槓</td>
-                    <td><input type="number" id="minggong28" value="0"></td>
-                    <td><input type="number" id="minggong19" value="0"></td>
+                    <td><input type="number" id="minggong28" placeholder="0" onclick="this.select()"></td>
+                    <td><input type="number" id="minggong19" placeholder="0" onclick="this.select()"></td>
                 </tr>
                 <tr>
                     <td>暗槓</td>
-                    <td><input type="number" id="amgong28" value="0"></td>
-                    <td><input type="number" id="amgong19" value="0"></td>
+                    <td><input type="number" id="amgong28" placeholder="0" onclick="this.select()"></td>
+                    <td><input type="number" id="amgong19" placeholder="0" onclick="this.select()"></td>
                 </tr>
             </table>
             <button type="button" onclick="calcPoints()">計分</button>
-            <h1 id="basic-points">POINTS</h1>
+            <button type="button" onclick="reset()">重設</button>
+            <!-- <h1 id="basic-points">POINTS</h1> -->
+            <table class="game-results">
+                <tr>
+                    <td>🏆糊家</td>
+                    <td id="winner-score"></td>
+                </tr>
+                <tr class="chutchung-row">
+                    <td>😡出沖者</td>
+                    <td id="chutchung-score"></td>
+                </tr>
+                <tr class="jong-row">
+                    <td>🤴莊家</td>
+                    <td id="jong-score"></td>
+                </tr>
+                <tr class="haan-row">
+                    <td>🤦‍閒家</td>
+                    <td id="haan-score"></td>
+                </tr>
+            </table>
         </div>
     </div>
 

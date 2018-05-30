@@ -10,6 +10,11 @@ input[type="number"] {
     text-align: center;
 }
 
+#fan {
+    font-size: 1rem;
+    font-family: Inconsolata, 'Courier New', Courier, monospace;
+}
+
 .calc {
     text-align: center;
     max-width: 350px;
@@ -29,15 +34,32 @@ input[type="number"] {
     margin: 10px 0;
 }
 
-.hakgong {
+.hakgong, .game-results {
     width: 100%;
-    padding: 20px 10px;
+    padding: 10px;
+}
+
+.game-results {
+    padding-top: 30px;
+    font-size: 1.5rem;
+}
+
+.game-results tr td {
+    border: 1px solid rgba(0,0,0,.3);
+}
+
+.game-results tr td:first-child {
+    width: 40%;
+    font-weight: bold;
+}
+.game-results tr td:nth-child(2) {
+    font-family: Inconsolata, 'Courier New', Courier, monospace;
 }
 
 label {
     border: 1px solid rgba(0,0,0,.3);
     border-radius: 5px;
     padding: 8px;
-    margin: 5px;
+    margin: 0 5px;
     white-space: nowrap;
 }
