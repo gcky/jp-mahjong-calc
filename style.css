@@ -10,6 +10,10 @@ input[type="number"] {
     text-align: center;
 }
 
+select {
+    background-color: rgba(0,0,0,.05);
+}
+
 #fan {
     font-size: 1rem;
     font-family: Inconsolata, 'Courier New', Courier, monospace;
@@ -18,14 +22,17 @@ input[type="number"] {
 .calc {
     text-align: center;
     max-width: 350px;
+    min-width: 292px;
     border: 1px solid rgba(0,0,0,.3);
     border-radius: 20px;
+    margin: 5px;
 }
 
 .container {
     display: flex;
     justify-content: center;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .options {
@@ -92,7 +99,7 @@ button {
     background-color: rgba(0,0,0,.05);
 }
 
-#calc-btn, #reset-btn {
+button:not(.option-link):not(.amend-btn) {
     border-radius: 10px;
     height: 30px;
     font-size: 1.2rem;
@@ -107,6 +114,10 @@ button {
 #reset-btn {
     background: none;
     width: 90px;
+}
+
+#add-hist-btn {
+    width: 100%;
 }
 
 .fan-container {

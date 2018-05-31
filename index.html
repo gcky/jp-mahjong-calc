@@ -9,6 +9,7 @@
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="history.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -18,8 +19,6 @@
         <div class="calc">
             <h1>🀄日麻計分機</h1>
             <div class="options">
-                <!-- <label><input type="radio" id="jong" name="winner" value="jong">莊糊</label>
-                <label><input type="radio" id="haan" name="winner" value="haan" checked>閒糊</label> -->
                 <select class="player-select" id="jong-id">
                     <option value="" disabled selected>莊家</option>
                     <option value="A">🐵A莊</option>
@@ -43,10 +42,7 @@
                     <option id="culpritD" value="D">🐳D出統</option>
                 </select>
             </div>
-            <div class="options">
-                <!-- <label><input type="checkbox" id="lon-self"> 自摸</label> -->
-                
-            </div>
+            <div class="options"></div>
             <div class="options">
                 <input type="number" id="fan" value="1" min="1" max="39" onclick="this.select()">&nbsp;翻
                 <button class="option-link" onclick="showFanBlocks()">翻數對照表▼</button>
@@ -200,6 +196,62 @@
                     <td>D</td>
                     <td class="score" id="scoreD"></td>
                 </tr>
+                <tr>
+                    <td colspan="3"><button type="button" id="add-hist-btn" onclick="addHistory(false)">加至記錄</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="game-history">
+            <h2>📊分數記錄</h2>
+            <div class="options">
+                <input type="number" id="start-points" value="20000" min="0" step="5000" onclick="this.select()">&nbsp;分
+                <button type="button" id="reset-hist-btn" onclick="resetGameHistory()">重設</button>
+            </div>
+            <table id="game-table" class="game-table">
+                <thead>
+                    <th>局</th>
+                    <th>🐵A</th>
+                    <th>🐶B</th>
+                    <th>🐸C</th>
+                    <th>🐳D</th>
+                </thead>
+                <tbody class="game-rows"></tbody>
+                <tbody class="amend-ctrl">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" class="amend-btn" onclick="amendScore(0,-100)">-100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(0,100)">+100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(0,-1000)">-1000</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(0,1000)">+1000</button>
+                        </td>
+                        <td>
+                            <button type="button" class="amend-btn" onclick="amendScore(1,-100)">-100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(1,100)">+100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(1,-1000)">-1000</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(1,1000)">+1000</button>
+                        </td>
+                        <td>
+                            <button type="button" class="amend-btn" onclick="amendScore(2,-100)">-100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(2,100)">+100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(2,-1000)">-1000</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(2,1000)">+1000</button>
+                        </td>
+                        <td>
+                            <button type="button" class="amend-btn" onclick="amendScore(3,-100)">-100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(3,100)">+100</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(3,-1000)">-1000</button>
+                            <button type="button" class="amend-btn" onclick="amendScore(3,1000)">+1000</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <button type="button" class="amend-btn long" id="add-nowin" onclick="addHistory(true)">新增流局</button>
+                            <button type="button" class="amend-btn long" id="remove-last" onclick="removeLastGame()">移除最近一項記錄</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

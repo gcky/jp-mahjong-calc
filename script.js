@@ -136,7 +136,10 @@ function windEyeClicked() {
 
 function sevenPairsClicked() {
     if ($('#seven-pairs').prop('checked')) {
-            $('.hakgong tr td select option:first-child').prop('selected', true);
+        $('.hakgong tr td select option:first-child').prop('selected', true);
+        if ($('#fan').val() < 2) {
+            $('#fan').val(2);
+        }
     }
 }
 
@@ -170,3 +173,75 @@ function checkCalcAvailability() {
     var $sels = $('.player-select option:selected[value=""]');
     $("#calc-btn").attr("disabled", $sels.length > 0);
 }
+
+function resetGameHistory() {
+    const startPoints = Number($('#start-points').val());
+    games = [[startPoints, startPoints, startPoints, startPoints]];
+    genGameHistoryTable();
+}
+
+var games = [[20000, 20000, 20000, 20000]];
+
+function addHistory(noWin) {
+    let newScores = [null, null, null, null];
+    if (noWin) {
+        newScores = games[games.length-1].slice();
+    } else {
+        $('.game-results tr td:nth-child(3)').each(function (idx){
+            newScores[idx] = Number(games[games.length-1][idx]) + Number($(this).html());
+        });
+    }
+    games.push(newScores);
+    genGameHistoryTable();
+}
+
+function removeLastGame() {
+    if (games.length > 1) {
+        games.splice(-1,1);
+        genGameHistoryTable();
+    }
+}
+
+function genGameHistoryTable() {
+    $('.game-table .game-rows').html('');
+    games.forEach(function (game, idx) {
+        let newCells = [$('<td>'), $('<td>'), $('<td>'), $('<td>')];
+        if (idx > 0) {
+            const prev = games[idx-1];
+            const current = games[idx];
+            let diff = current.map(function(item, index) {
+                return item - prev[index];
+            });
+            diff.forEach(function (elem, idx) {
+                if (elem > 0) {
+                    newCells[idx].addClass('win-cell');
+                } else if (elem < 0) {
+                    newCells[idx].addClass('lose-cell');
+                }
+            });
+        }
+        $('.game-table').find('.game-rows')
+        .append($('<tr>')
+            .append(
+                $('<td>').append(idx),
+                newCells[0].append(game[0]),
+                newCells[1].append(game[1]),
+                newCells[2].append(game[2]),
+                newCells[3].append(game[3])
+            )
+        );
+    });
+}
+
+function amendScore(player, delta) {
+    games[games.length-1][player] += Number(delta);
+    genGameHistoryTable();
+}
+
+window.onbeforeunload = function() {
+    return "The game history will be lost, are you sure?";
+};
+
+$(document).ready(function() {
+    genGameHistoryTable();
+});
