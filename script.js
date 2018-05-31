@@ -158,11 +158,12 @@ function showFanBlocks() {
 function winnerChanged() {
     const winner = $('#winner-id').val();
     const culprit = $('#culprit-id').val();
-    $('#culprit-id option').show();
+    $('#culprit-id option').prop('disabled', false);
     if (winner == culprit) {
         $('#culprit-title').prop('selected', true);
     }
-    $('#culprit'+winner).hide();
+    $('#culprit-title').prop('disabled', true);
+    $('#culprit'+winner).prop('disabled', true);
 }
 
 $(function() {
