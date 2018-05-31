@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>🀄日麻Calc機</title>
+	<title>🀄日麻計分機</title>
     <script src="jquery-3.3.1.slim.min.js"></script>
     <script src="script.js"></script>
 	<!--[if IE]>
@@ -20,6 +20,7 @@
             <div class="options">
                 <label><input type="radio" id="jong" name="winner" value="jong">莊</label>
                 <label><input type="radio" id="haan" name="winner" value="haan" checked>閒</label>
+                <label><input type="checkbox" id="lon-self"> 自摸</label>
             </div>
             <div class="options">
                 <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻
@@ -43,7 +44,7 @@
                     <p>清一色</p>
                 </div>
                 <div class="fan-block yik-full">
-                    <h1>役滿</h1>
+                    <h1>役滿 (十三翻)</h1>
                     <p>國士無雙, 大三元, 四暗刻, 字一色, 綠一色, 小四喜, 大四喜, 清老頭, 九蓮寶燈, 四槓子, 天和, 地和</p>
                 </div>
             </div>
@@ -57,7 +58,6 @@
                 <label><input type="checkbox" id="three-dollar-eye" onclick="threeDollarClicked()"> 三元眼</label>
             </div>
             <div class="options">
-                <label><input type="checkbox" id="lon-self"> 自摸</label>
                 <label><input type="checkbox" id="door-ching"> 門前清</label>
                 <label><input type="checkbox" id="ping-flower"> 平和/嶺上開花</label>
             </div>
