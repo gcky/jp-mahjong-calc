@@ -18,12 +18,37 @@
         <div class="calc">
             <h1>🀄日麻計分機</h1>
             <div class="options">
-                <label><input type="radio" id="jong" name="winner" value="jong">莊</label>
-                <label><input type="radio" id="haan" name="winner" value="haan" checked>閒</label>
-                <label><input type="checkbox" id="lon-self"> 自摸</label>
+                <!-- <label><input type="radio" id="jong" name="winner" value="jong">莊糊</label>
+                <label><input type="radio" id="haan" name="winner" value="haan" checked>閒糊</label> -->
+                <select class="player-select" id="jong-id">
+                    <option value="" disabled selected>莊家</option>
+                    <option value="A">🐵A莊</option>
+                    <option value="B">🐶B莊</option>
+                    <option value="C">🐸C莊</option>
+                    <option value="D">🐳D莊</option>
+                </select>
+                <select class="player-select" id="winner-id" onchange="winnerChanged()">
+                    <option value="" disabled selected>糊家</option>
+                    <option value="A">🐵A糊</option>
+                    <option value="B">🐶B糊</option>
+                    <option value="C">🐸C糊</option>
+                    <option value="D">🐳D糊</option>
+                </select>
+                <select class="player-select" id="culprit-id">
+                    <option id="culprit-title" value="" disabled selected>出統者</option>
+                    <option id="culprit-self" value="self">自摸</option>
+                    <option id="culpritA" value="A">🐵A出統</option>
+                    <option id="culpritB" value="B">🐶B出統</option>
+                    <option id="culpritC" value="C">🐸C出統</option>
+                    <option id="culpritD" value="D">🐳D出統</option>
+                </select>
             </div>
             <div class="options">
-                <input type="number" id="fan" value="1" onclick="this.select()">&nbsp;翻
+                <!-- <label><input type="checkbox" id="lon-self"> 自摸</label> -->
+                
+            </div>
+            <div class="options">
+                <input type="number" id="fan" value="1" min="1" max="39" onclick="this.select()">&nbsp;翻
                 <button class="option-link" onclick="showFanBlocks()">翻數對照表▼</button>
             </div>
             <div class="options fan-container">
@@ -154,27 +179,26 @@
             </table>
             <button type="button" id="calc-btn" onclick="calcPoints()">計分</button>
             <button type="button" id="reset-btn" onclick="reset()">重設</button>
-            <!-- <h1 id="basic-points">POINTS</h1> -->
             <table class="game-results">
                 <tr>
-                    <td>🏆</td>
-                    <td>糊家</td>
-                    <td id="winner-score"></td>
+                    <td>🐵</td>
+                    <td>A</td>
+                    <td class="score" id="scoreA"></td>
                 </tr>
-                <tr class="chutchung-row">
-                    <td>😡</td>
-                    <td>出沖家</td>
-                    <td id="chutchung-score"></td>
+                <tr>
+                    <td>🐶</td>
+                    <td>B</td>
+                    <td class="score" id="scoreB"></td>
                 </tr>
-                <tr class="jong-row">
-                    <td>👨‍✈️</td>
-                    <td>莊家</td>
-                    <td id="jong-score"></td>
+                <tr>
+                    <td>🐸</td>
+                    <td>C</td>
+                    <td class="score" id="scoreC"></td>
                 </tr>
-                <tr class="haan-row">
-                    <td>🤦‍</td>
-                    <td>閒家</td>
-                    <td id="haan-score"></td>
+                <tr>
+                    <td>🐳</td>
+                    <td>D</td>
+                    <td class="score" id="scoreD"></td>
                 </tr>
             </table>
         </div>

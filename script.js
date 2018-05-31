@@ -1,6 +1,7 @@
 function calcPoints() {
     let fan = Number($('#fan').val());
     let fu = 20;
+    const jongWin = $('#jong-id').val() == $('#winner-id').val();
     if ($('#seven-pairs').prop('checked')) {
         fan -= 1;
         fu = 50;
@@ -9,10 +10,10 @@ function calcPoints() {
             fu += 2;
         }
         if ($('#door-ching').prop('checked') && 
-            !$('#lon-self').prop('checked')) {
+            !$('#culprit-id').val() == 'self') {
             fu += 10;
         }
-        if ($('#lon-self').prop('checked') && 
+        if ($('#culprit-id').val() == 'self' && 
             !$('#ping-flower').prop('checked') &&
             !$('#door-ching').prop('checked')) {
             fu += 2;
@@ -57,8 +58,8 @@ function calcPoints() {
     } else if (basicPoints < 2000) {
         basicPoints = fu*Math.pow(2, fan+2);
     }
-    if ($('input[name=winner]:checked').val() == 'jong') {
-        if ($('#lon-self').prop('checked')) {
+    if (jongWin) {
+        if ($('#culprit-id').val() == 'self') {
             haanScore = -Math.ceil((2*basicPoints)/100)*100;
             winnerScore = -3*haanScore;
         } else {
@@ -66,7 +67,7 @@ function calcPoints() {
             winnerScore = -chutchungScore;
         }
     } else {
-        if ($('#lon-self').prop('checked')) {
+        if ($('#culprit-id').val() == 'self') {
             jongScore = -Math.ceil((2*basicPoints)/100)*100;
             haanScore = -Math.ceil(basicPoints/100)*100;
             winnerScore = -jongScore-2*haanScore;
@@ -80,11 +81,31 @@ function calcPoints() {
     displayGameResults(winnerScore, jongScore, haanScore, chutchungScore);
 }
 
-function displayGameResults(winner, jong, haan, chutchong) {
-    $('#winner-score').html(winner ? '+'+winner : '');
-    $('#chutchung-score').html(chutchong);
-    $('#jong-score').html(jong);
-    $('#haan-score').html(haan);
+function displayGameResults(winnerScore, jongScore, haanScore, culpritScore) {
+    $('.game-results tr td:nth-child(3)').html('');
+    $('.game-results tr td:nth-child(3)').removeClass('win');
+    const winner = $('#winner-id').val();
+    const culprit = $('#culprit-id').val();
+    const jong = $('#jong-id').val();
+    const haan = ['A','B','C','D'].filter(function(elem){
+        return elem != winner && elem != jong; 
+    });
+    if (winnerScore) {
+        $('#score'+winner).html('+'+winnerScore);
+        $('#score'+winner).addClass('win');
+        if (culpritScore) {
+            $('#score'+culprit).html(culpritScore);
+        } else if (jongScore) {
+            $('#score'+jong).html(jongScore);
+            haan.forEach(function (player) {
+                $('#score'+player).html(haanScore);
+            });
+        } else if (haanScore) {
+            haan.forEach(function (player) {
+                $('#score'+player).html(haanScore);
+            });
+        }
+    }
 }
 
 function reset() {
@@ -93,6 +114,9 @@ function reset() {
     $('#haan').prop('checked', true);
     $('#fan').val(1);
     $('.hakgong tr td select option:first-child').prop('selected', true);
+    $('#winner-id option[value=""]').prop('selected', true);
+    $('#culprit-id option[value=""]').prop('selected', true);
+    checkCalcAvailability();
     displayGameResults(null, null, null, null);
 }
 
@@ -126,4 +150,23 @@ function showFanBlocks() {
     } else {
         $('.options.fan-container').addClass('show');
     }
+}
+
+function winnerChanged() {
+    const winner = $('#winner-id').val();
+    const culprit = $('#culprit-id').val();
+    $('#culprit-id option').show();
+    if (winner == culprit) {
+        $('#culprit-title').prop('selected', true);
+    }
+    $('#culprit'+winner).hide();
+}
+
+$(function() {
+    $('.player-select').on('change', checkCalcAvailability).change();
+});
+
+function checkCalcAvailability() {
+    var $sels = $('.player-select option:selected[value=""]');
+    $("#calc-btn").attr("disabled", $sels.length > 0);
 }

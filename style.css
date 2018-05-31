@@ -61,17 +61,15 @@ input[type="number"] {
     width: 10%;
 }
 .game-results tr td:nth-child(2) {
-    width: 30%;
+    width: 10%;
     font-weight: bold;
 }
-.game-results tr td:nth-child(3) {
+.score {
     font-family: Inconsolata, 'Courier New', Courier, monospace;
-}
-#winner-score {
-    color: green;
-}
-#chutchung-score, #jong-score, #haan-score {
     color: red;
+}
+.score.win {
+    color: green;
 }
 
 label, .option-link {
@@ -149,4 +147,11 @@ button {
 
 .yik-full {
     width: calc(90% + 12px);
+}
+
+.player-select {
+    border-radius: 5px;
+    margin: 0 4px;
+    font-size: 1rem;
+    height: 40px;
 }
