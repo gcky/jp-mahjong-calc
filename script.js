@@ -142,6 +142,10 @@ function genCurrentGameResults(winnerScore, jongScore, haanScore, culpritScore) 
     });
     let gameStat = {
         jong: jong,
+        winner: winner,
+        culprit: culprit,
+        haan: haan,
+        noWin: false,
         scores: [null, null, null, null]
     };
     if (winnerScore) {
@@ -156,6 +160,8 @@ function genCurrentGameResults(winnerScore, jongScore, haanScore, culpritScore) 
                 gameStat.scores[idx[player]] = haanScore;
             });
         }
+    } else {
+        gameStat.noWin = true;
     }
     $('#game-results').data('gameStat', gameStat);
 }
@@ -229,7 +235,7 @@ function checkCalcAvailability() {
 
 $(document).on('click', '#reset-hist-btn', function () {
     const startPoints = Number($('#start-points').val());
-    const games = [[startPoints, startPoints, startPoints, startPoints]];
+    const games = [[null, startPoints, startPoints, startPoints, startPoints]];
     $('#game-table').data('games', games);
     genGameHistoryTable();
 });
@@ -243,14 +249,17 @@ $(document).on('click', '#add-nowin', function () {
 });
 
 function addHistory(noWin) {
-    let newScores = [null, null, null, null];
+    let gameStat = $('#game-results').data('gameStat');
+    let newScores = [gameStat.jong, null, null, null, null];
     let games = $('#game-table').data('games');
-    if (noWin) {
-        newScores = games[games.length-1].slice();
+    console.log(games)
+    if (noWin || gameStat.noWin) {
+        newScores = [gameStat.jong ? gameStat.jong : null].concat(games[games.length-1].slice(1));
+        console.log(newScores)
     } else {
-        $('.game-results tr td:nth-child(3)').each(function (idx){
-            newScores[idx] = Number(games[games.length-1][idx]) + Number($(this).html());
-        });
+        newScores = [gameStat.jong].concat(games[games.length-1].map(function (current, idx) {
+            return current + gameStat.scores[idx-1];
+        }).slice(1));
     }
     games.push(newScores);
     $('#game-table').data('games', games);
@@ -270,11 +279,12 @@ function genGameHistoryTable() {
     $('.game-table .game-rows').html('');
     let games = $('#game-table').data('games');
     games.forEach(function (game, idx) {
-        let newCells = [$('<td>'), $('<td>'), $('<td>'), $('<td>')];
+        let newCells = [$('<td>'), $('<td>'), $('<td>'), $('<td>'), $('<td>')];
+        let diff = null;
         if (idx > 0) {
             const prev = games[idx-1];
             const current = games[idx];
-            let diff = current.map(function(item, index) {
+            diff = current.map(function(item, index) {
                 return item - prev[index];
             });
             diff.forEach(function (elem, idx) {
@@ -290,9 +300,10 @@ function genGameHistoryTable() {
             .append(
                 $('<td>').append(idx),
                 newCells[0].append(game[0]),
-                newCells[1].append(game[1]),
-                newCells[2].append(game[2]),
-                newCells[3].append(game[3])
+                newCells[1].append(game[1]+(diff ? '<br><span>' + diff[1] + '</span>' : '')),
+                newCells[2].append(game[2]+(diff ? '<br><span>' + diff[2] + '</span>' : '')),
+                newCells[3].append(game[3]+(diff ? '<br><span>' + diff[3] + '</span>' : '')),
+                newCells[4].append(game[4]+(diff ? '<br><span>' + diff[4] + '</span>' : '')),
             )
         );
     });
@@ -312,6 +323,14 @@ window.onbeforeunload = function() {
 };
 
 $(document).ready(function() {
-    $('#game-table').data('games', [[20000, 20000, 20000, 20000]]);
+    $('#game-table').data('games', [[null, 20000, 20000, 20000, 20000]]);
+    $('#game-results').data('gameStat', {
+        jong: null,
+        winner: null,
+        culprit: null,
+        haan: null,
+        noWin: false,
+        scores: [null, null, null, null]
+    });
     genGameHistoryTable();
 });

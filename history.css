@@ -28,6 +28,16 @@
     font-size: 1.2rem;
 }
 
+.game-table .game-rows tr td {
+    line-height: 1.1rem;
+}
+
+.game-table .game-rows tr td span {
+    line-height: .9rem;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
 .game-table .amend-ctrl tr td {
     padding: 5px 0;
 }

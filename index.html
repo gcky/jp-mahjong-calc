@@ -211,6 +211,7 @@
             <table id="game-table" class="game-table">
                 <thead>
                     <th>局</th>
+                    <th>莊</th>
                     <th>🐵A</th>
                     <th>🐶B</th>
                     <th>🐸C</th>
@@ -220,12 +221,7 @@
                 <tbody class="amend-ctrl">
                     <tr>
                         <td></td>
-                        <td>
-                            <button type="button" class="amend-btn" data-player="0" data-amend-val="-100">-100</button>
-                            <button type="button" class="amend-btn" data-player="0" data-amend-val="100">+100</button>
-                            <button type="button" class="amend-btn" data-player="0" data-amend-val="-1000">-1000</button>
-                            <button type="button" class="amend-btn" data-player="0" data-amend-val="1000">+1000</button>
-                        </td>
+                        <td></td>
                         <td>
                             <button type="button" class="amend-btn" data-player="1" data-amend-val="-100">-100</button>
                             <button type="button" class="amend-btn" data-player="1" data-amend-val="100">+100</button>
@@ -244,9 +240,15 @@
                             <button type="button" class="amend-btn" data-player="3" data-amend-val="-1000">-1000</button>
                             <button type="button" class="amend-btn" data-player="3" data-amend-val="1000">+1000</button>
                         </td>
+                        <td>
+                            <button type="button" class="amend-btn" data-player="4" data-amend-val="-100">-100</button>
+                            <button type="button" class="amend-btn" data-player="4" data-amend-val="100">+100</button>
+                            <button type="button" class="amend-btn" data-player="4" data-amend-val="-1000">-1000</button>
+                            <button type="button" class="amend-btn" data-player="4" data-amend-val="1000">+1000</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                             <button type="button" class="amend-btn long" id="add-nowin">新增流局</button>
                             <button type="button" class="amend-btn long" id="remove-last">移除最近一局</button>
                         </td>
