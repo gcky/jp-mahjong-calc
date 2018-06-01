@@ -98,28 +98,66 @@ function calcBasicPoints(fan, fu) {
 function displayGameResults(winnerScore, jongScore, haanScore, culpritScore) {
     $('.game-results tr td:nth-child(3)').html('');
     $('.game-results tr td:nth-child(3)').removeClass('win');
+    genCurrentGameResults(winnerScore, jongScore, haanScore, culpritScore);
+    const label = ['A','B','C','D'];
+    const gameStat = $('#game-results').data('gameStat');
+    console.log(gameStat)
+    gameStat.scores.forEach(function (score, idx) {
+        $('#score'+label[idx]).html(score > 0 ? score : score);
+        if (score > 0) {
+            $('#score'+label[idx]).addClass('win');
+        }
+    });
+    // const winner = $('#winner-id').val();
+    // const culprit = $('#culprit-id').val();
+    // const jong = $('#jong-id').val();
+    // const haan = ['A','B','C','D'].filter(function(elem){
+    //     return elem != winner && elem != jong; 
+    // });
+    // if (winnerScore) {
+    //     $('#score'+winner).html('+'+winnerScore);
+    //     $('#score'+winner).addClass('win');
+    //     if (culpritScore) {
+    //         $('#score'+culprit).html(culpritScore);
+    //     } else if (jongScore) {
+    //         $('#score'+jong).html(jongScore);
+    //         haan.forEach(function (player) {
+    //             $('#score'+player).html(haanScore);
+    //         });
+    //     } else if (haanScore) {
+    //         haan.forEach(function (player) {
+    //             $('#score'+player).html(haanScore);
+    //         });
+    //     }
+    // }
+}
+
+function genCurrentGameResults(winnerScore, jongScore, haanScore, culpritScore) {
+    const idx = {A: 0, B: 1, C: 2, D: 3};
     const winner = $('#winner-id').val();
     const culprit = $('#culprit-id').val();
     const jong = $('#jong-id').val();
     const haan = ['A','B','C','D'].filter(function(elem){
         return elem != winner && elem != jong; 
     });
+    let gameStat = {
+        jong: jong,
+        scores: [null, null, null, null]
+    };
     if (winnerScore) {
-        $('#score'+winner).html('+'+winnerScore);
-        $('#score'+winner).addClass('win');
+        gameStat.scores[idx[winner]] = winnerScore;
         if (culpritScore) {
-            $('#score'+culprit).html(culpritScore);
-        } else if (jongScore) {
-            $('#score'+jong).html(jongScore);
+            gameStat.scores[idx[culprit]] = culpritScore;
+        } else {
+            if (jongScore) {
+                gameStat.scores[idx[jong]] = jongScore;
+            }
             haan.forEach(function (player) {
-                $('#score'+player).html(haanScore);
-            });
-        } else if (haanScore) {
-            haan.forEach(function (player) {
-                $('#score'+player).html(haanScore);
+                gameStat.scores[idx[player]] = haanScore;
             });
         }
     }
+    $('#game-results').data('gameStat', gameStat);
 }
 
 function resetCalc() {
@@ -262,7 +300,7 @@ function genGameHistoryTable() {
 
 $(document).on('click', '.amend-btn', function () {
     const player = $(this).data('player');
-    const delta = $(this).data('amendval');
+    const delta = $(this).data('amendVal');
     let games = $('#game-table').data('games');
     games[games.length-1][player] += Number(delta);
     $('#game-table').data('games', games);
