@@ -26,7 +26,7 @@
                     <option value="C">🐸C莊</option>
                     <option value="D">🐳D莊</option>
                 </select>
-                <select class="player-select" id="winner-id" onchange="winnerChanged()">
+                <select class="player-select" id="winner-id">
                     <option value="" disabled selected>糊家</option>
                     <option value="A">🐵A糊</option>
                     <option value="B">🐶B糊</option>
@@ -45,7 +45,7 @@
             <div class="options"></div>
             <div class="options">
                 <input type="number" id="fan" value="1" min="1" max="39" onclick="this.select()">&nbsp;翻
-                <button class="option-link" onclick="showFanBlocks()">翻數對照表▼</button>
+                <button class="option-link">翻數對照表▼</button>
             </div>
             <div class="options fan-container">
                 <div class="fan-block">
@@ -70,19 +70,19 @@
                 </div>
             </div>
             <div class="options">
-                <label><input type="checkbox" id="seven-pairs" onclick="sevenPairsClicked()"> 七對子</label>
+                <label><input type="checkbox" id="seven-pairs"> 七對子</label>
                 <label><input type="checkbox" id="single-call"> 偏章/卡窿/單釣叫糊</label>
             </div>
             <div class="options">
-                <label><input type="checkbox" id="own-wind-eye" onclick="windEyeClicked()"> 自風眼</label>
-                <label><input type="checkbox" id="board-wind-eye" onclick="windEyeClicked()"> 場風眼</label>
-                <label><input type="checkbox" id="three-dollar-eye" onclick="threeDollarClicked()"> 三元眼</label>
+                <label><input type="checkbox" id="own-wind-eye"> 自風眼</label>
+                <label><input type="checkbox" id="board-wind-eye"> 場風眼</label>
+                <label><input type="checkbox" id="three-dollar-eye"> 三元眼</label>
             </div>
             <div class="options">
                 <label><input type="checkbox" id="door-ching"> 門前清</label>
                 <label><input type="checkbox" id="ping-flower"> 平和/嶺上開花</label>
             </div>
-            <table class="hakgong" onchange="hakgongChanged()">
+            <table class="hakgong">
                 <thead>
                     <th></th>
                     <th>中張(2-8)</th>
@@ -173,8 +173,8 @@
                     </td>
                 </tr>
             </table>
-            <button type="button" id="calc-btn" onclick="calcPoints()">計分</button>
-            <button type="button" id="reset-btn" onclick="reset()">重設</button>
+            <button type="button" id="calc-btn">計分</button>
+            <button type="button" id="reset-btn">重設</button>
             <table class="game-results">
                 <tr>
                     <td>🐵</td>
@@ -197,7 +197,7 @@
                     <td class="score" id="scoreD"></td>
                 </tr>
                 <tr>
-                    <td colspan="3"><button type="button" id="add-hist-btn" onclick="addHistory(false)">加至記錄</button></td>
+                    <td colspan="3"><button type="button" id="add-hist-btn">加至記錄</button></td>
                 </tr>
             </table>
         </div>
@@ -206,7 +206,7 @@
             <h2>📊分數記錄</h2>
             <div class="options">
                 <input type="number" id="start-points" value="20000" min="0" step="5000" onclick="this.select()">&nbsp;分
-                <button type="button" id="reset-hist-btn" onclick="resetGameHistory()">重設</button>
+                <button type="button" id="reset-hist-btn">重設</button>
             </div>
             <table id="game-table" class="game-table">
                 <thead>
@@ -221,34 +221,34 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="button" class="amend-btn" onclick="amendScore(0,-100)">-100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(0,100)">+100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(0,-1000)">-1000</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(0,1000)">+1000</button>
+                            <button type="button" class="amend-btn" data-player="0" data-amendval="-100">-100</button>
+                            <button type="button" class="amend-btn" data-player="0" data-amendval="100">+100</button>
+                            <button type="button" class="amend-btn" data-player="0" data-amendval="-1000">-1000</button>
+                            <button type="button" class="amend-btn" data-player="0" data-amendval="1000">+1000</button>
                         </td>
                         <td>
-                            <button type="button" class="amend-btn" onclick="amendScore(1,-100)">-100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(1,100)">+100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(1,-1000)">-1000</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(1,1000)">+1000</button>
+                            <button type="button" class="amend-btn" data-player="1" data-amendval="-100">-100</button>
+                            <button type="button" class="amend-btn" data-player="1" data-amendval="100">+100</button>
+                            <button type="button" class="amend-btn" data-player="1" data-amendval="-1000">-1000</button>
+                            <button type="button" class="amend-btn" data-player="1" data-amendval="1000">+1000</button>
                         </td>
                         <td>
-                            <button type="button" class="amend-btn" onclick="amendScore(2,-100)">-100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(2,100)">+100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(2,-1000)">-1000</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(2,1000)">+1000</button>
+                            <button type="button" class="amend-btn" data-player="2" data-amendval="-100">-100</button>
+                            <button type="button" class="amend-btn" data-player="2" data-amendval="100">+100</button>
+                            <button type="button" class="amend-btn" data-player="2" data-amendval="-1000">-1000</button>
+                            <button type="button" class="amend-btn" data-player="2" data-amendval="1000">+1000</button>
                         </td>
                         <td>
-                            <button type="button" class="amend-btn" onclick="amendScore(3,-100)">-100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(3,100)">+100</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(3,-1000)">-1000</button>
-                            <button type="button" class="amend-btn" onclick="amendScore(3,1000)">+1000</button>
+                            <button type="button" class="amend-btn" data-player="3" data-amendval="-100">-100</button>
+                            <button type="button" class="amend-btn" data-player="3" data-amendval="100">+100</button>
+                            <button type="button" class="amend-btn" data-player="3" data-amendval="-1000">-1000</button>
+                            <button type="button" class="amend-btn" data-player="3" data-amendval="1000">+1000</button>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <button type="button" class="amend-btn long" id="add-nowin" onclick="addHistory(true)">新增流局</button>
-                            <button type="button" class="amend-btn long" id="remove-last" onclick="removeLastGame()">移除最近一項記錄</button>
+                            <button type="button" class="amend-btn long" id="add-nowin">新增流局</button>
+                            <button type="button" class="amend-btn long" id="remove-last">移除最近一局</button>
                         </td>
                     </tr>
                 </tbody>
