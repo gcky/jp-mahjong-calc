@@ -108,28 +108,6 @@ function displayGameResults(winnerScore, jongScore, haanScore, culpritScore) {
             $('#score'+label[idx]).addClass('win');
         }
     });
-    // const winner = $('#winner-id').val();
-    // const culprit = $('#culprit-id').val();
-    // const jong = $('#jong-id').val();
-    // const haan = ['A','B','C','D'].filter(function(elem){
-    //     return elem != winner && elem != jong; 
-    // });
-    // if (winnerScore) {
-    //     $('#score'+winner).html('+'+winnerScore);
-    //     $('#score'+winner).addClass('win');
-    //     if (culpritScore) {
-    //         $('#score'+culprit).html(culpritScore);
-    //     } else if (jongScore) {
-    //         $('#score'+jong).html(jongScore);
-    //         haan.forEach(function (player) {
-    //             $('#score'+player).html(haanScore);
-    //         });
-    //     } else if (haanScore) {
-    //         haan.forEach(function (player) {
-    //             $('#score'+player).html(haanScore);
-    //         });
-    //     }
-    // }
 }
 
 function genCurrentGameResults(winnerScore, jongScore, haanScore, culpritScore) {
@@ -234,8 +212,16 @@ function checkCalcAvailability() {
 }
 
 $(document).on('click', '#reset-hist-btn', function () {
+    const defaultGameStat = {
+        jong: null,
+        winner: null,
+        culprit: null,
+        haan: null,
+        noWin: false,
+        scores: [null, null, null, null]
+    };
     const startPoints = Number($('#start-points').val());
-    const games = [[null, startPoints, startPoints, startPoints, startPoints]];
+    const games = [[defaultGameStat, [startPoints, startPoints, startPoints, startPoints]]];
     $('#game-table').data('games', games);
     genGameHistoryTable();
 });
@@ -250,18 +236,19 @@ $(document).on('click', '#add-nowin', function () {
 
 function addHistory(noWin) {
     let gameStat = $('#game-results').data('gameStat');
-    let newScores = [gameStat.jong, null, null, null, null];
+    let newScores = [null, null, null, null];
     let games = $('#game-table').data('games');
     console.log(games)
     if (noWin || gameStat.noWin) {
-        newScores = [gameStat.jong ? gameStat.jong : null].concat(games[games.length-1].slice(1));
+        newScores = games[games.length-1][1].slice();
         console.log(newScores)
     } else {
-        newScores = [gameStat.jong].concat(games[games.length-1].map(function (current, idx) {
-            return current + gameStat.scores[idx-1];
-        }).slice(1));
+        newScores = games[games.length-1][1].map(function (current, idx) {
+            return current + gameStat.scores[idx];
+        }).slice();
+        console.log(newScores);
     }
-    games.push(newScores);
+    games.push([gameStat, newScores]);
     $('#game-table').data('games', games);
     genGameHistoryTable();
 }
@@ -282,16 +269,19 @@ function genGameHistoryTable() {
         let newCells = [$('<td>'), $('<td>'), $('<td>'), $('<td>'), $('<td>')];
         let diff = null;
         if (idx > 0) {
-            const prev = games[idx-1];
-            const current = games[idx];
+            const prev = games[idx-1][1];
+            const current = games[idx][1];
             diff = current.map(function(item, index) {
-                return item - prev[index];
+                let x = item - prev[index];
+                return x != 0 ? x : null;
             });
+            // const idx = {A: 2, B: 3, C: 4, D: 5};
+            // newCells[idx[game.winner]].addClass('win-cell');
             diff.forEach(function (elem, idx) {
                 if (elem > 0) {
-                    newCells[idx].addClass('win-cell');
+                    newCells[idx+1].addClass('win-cell');
                 } else if (elem < 0) {
-                    newCells[idx].addClass('lose-cell');
+                    newCells[idx+1].addClass('lose-cell');
                 }
             });
         }
@@ -299,11 +289,11 @@ function genGameHistoryTable() {
         .append($('<tr>')
             .append(
                 $('<td>').append(idx),
-                newCells[0].append(game[0]),
-                newCells[1].append(game[1]+(diff ? '<br><span>' + diff[1] + '</span>' : '')),
-                newCells[2].append(game[2]+(diff ? '<br><span>' + diff[2] + '</span>' : '')),
-                newCells[3].append(game[3]+(diff ? '<br><span>' + diff[3] + '</span>' : '')),
-                newCells[4].append(game[4]+(diff ? '<br><span>' + diff[4] + '</span>' : '')),
+                newCells[0].append(game[0].jong),
+                newCells[1].append(game[1][0]+(diff && diff[0] ? '<br><span>' + diff[0] + '</span>' : '')),
+                newCells[2].append(game[1][1]+(diff && diff[1] ? '<br><span>' + diff[1] + '</span>' : '')),
+                newCells[3].append(game[1][2]+(diff && diff[2] ? '<br><span>' + diff[2] + '</span>' : '')),
+                newCells[4].append(game[1][3]+(diff && diff[3] ? '<br><span>' + diff[3] + '</span>' : '')),
             )
         );
     });
@@ -313,7 +303,7 @@ $(document).on('click', '.amend-btn', function () {
     const player = $(this).data('player');
     const delta = $(this).data('amendVal');
     let games = $('#game-table').data('games');
-    games[games.length-1][player] += Number(delta);
+    games[games.length-1][1][player] += Number(delta);
     $('#game-table').data('games', games);
     genGameHistoryTable();
 });
@@ -323,14 +313,15 @@ window.onbeforeunload = function() {
 };
 
 $(document).ready(function() {
-    $('#game-table').data('games', [[null, 20000, 20000, 20000, 20000]]);
-    $('#game-results').data('gameStat', {
+    const defaultGameStat = {
         jong: null,
         winner: null,
         culprit: null,
         haan: null,
         noWin: false,
         scores: [null, null, null, null]
-    });
+    };
+    $('#game-table').data('games', [[defaultGameStat, [20000, 20000, 20000, 20000]]]);
+    $('#game-results').data('gameStat', defaultGameStat);
     genGameHistoryTable();
 });
