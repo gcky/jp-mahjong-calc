@@ -1,0 +1,72 @@
+.game-history {
+    text-align: left;
+    flex: 1;
+    max-width: 500px;
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 20px;
+    margin: 5px;
+    padding: 0 20px;
+}
+
+.game-table {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+.game-table tr td, .game-table thead th {
+    border: 1px solid rgba(0,0,0,.3);
+    text-align: center;
+}
+.game-table thead th, .game-table .amend-ctrl {
+    background-color: rgba(0,0,0,.05);
+    font-size: 1.2rem;
+}
+
+.game-table tbody {
+    font-family: Inconsolata, 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+}
+
+.game-table .game-rows tr td {
+    line-height: 1.1rem;
+}
+
+.game-table .game-rows tr td span {
+    line-height: .9rem;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.game-table .amend-ctrl tr td {
+    padding: 5px 0;
+}
+
+#start-points {
+    width: 30%;
+}
+
+#reset-hist-btn {
+    margin-left: 20px;
+}
+
+.amend-btn {
+    margin: 1px 0;
+    width: 50px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.amend-btn.long {
+    width: auto;
+}
+
+.win-cell {
+    background-color: gold;
+}
+
+.lose-cell {
+    background-color: tomato;
+    color: white;
+}

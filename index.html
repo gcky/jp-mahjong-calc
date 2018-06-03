@@ -3,13 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>🀄日麻計分機</title>
-    <script src="jquery-3.3.1.slim.min.js"></script>
+    <script src="js/dependencies/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/modules/calculator.js"></script>
     <script src="script.js"></script>
 	<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="history.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/history.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -19,7 +20,7 @@
         <div class="calc">
             <h1>🀄日麻計分機</h1>
             <div class="options">
-                <select class="player-select" id="jong-id">
+                <select class="player-select" id="dealer-id">
                     <option value="" disabled selected>莊家</option>
                     <option value="A">🐵A莊</option>
                     <option value="B">🐶B莊</option>
@@ -33,38 +34,38 @@
                     <option value="C">🐸C糊</option>
                     <option value="D">🐳D糊</option>
                 </select>
-                <select class="player-select" id="culprit-id">
-                    <option id="culprit-title" value="" disabled selected>出統者</option>
-                    <option id="culprit-self" value="self">自摸</option>
-                    <option id="culpritA" value="A">🐵A出統</option>
-                    <option id="culpritB" value="B">🐶B出統</option>
-                    <option id="culpritC" value="C">🐸C出統</option>
-                    <option id="culpritD" value="D">🐳D出統</option>
+                <select class="player-select" id="discarder-id">
+                    <option id="discarder-title" value="" disabled selected>出統者</option>
+                    <option id="discarder-self" value="self">自摸</option>
+                    <option id="discarderA" value="A">🐵A出統</option>
+                    <option id="discarderB" value="B">🐶B出統</option>
+                    <option id="discarderC" value="C">🐸C出統</option>
+                    <option id="discarderD" value="D">🐳D出統</option>
                 </select>
             </div>
             <div class="options"></div>
             <div class="options">
-                <input type="number" id="fan" value="1" min="1" max="39" onclick="this.select()">&nbsp;翻
+                <input type="number" id="han" value="1" min="1" max="39" onclick="this.select()">&nbsp;翻
                 <button class="option-link">翻數對照表▼</button>
             </div>
-            <div class="options fan-container">
-                <div class="fan-block">
+            <div class="options han-container">
+                <div class="han-block">
                     <h1>一翻</h1>
                     <p>立直, 一發, 門前清自摸和, 斷幺九, 平和, 一盃口, 役牌, 嶺上開花, 槍槓, 海底撈月, 河底撈魚</p>
                 </div>
-                <div class="fan-block">
+                <div class="han-block">
                     <h1>兩翻</h1>
                     <p>三色同順, 三色同刻, 一氣通貫, 對對和, 三暗刻, 三槓子, 七對子, 混全帶幺九, 混老頭, 小三元, 雙立直</p>
                 </div>
-                <div class="fan-block">
+                <div class="han-block">
                     <h1>三翻</h1>
                     <p>混一色, 純全帶幺九, 二盃口</p>
                 </div>
-                <div class="fan-block">
+                <div class="han-block">
                     <h1>六翻</h1>
                     <p>清一色</p>
                 </div>
-                <div class="fan-block yik-full">
+                <div class="han-block yakuman">
                     <h1>役滿 (十三翻)</h1>
                     <p>國士無雙, 大三元, 四暗刻, 字一色, 綠一色, 小四喜, 大四喜, 清老頭, 九蓮寶燈, 四槓子, 天和, 地和</p>
                 </div>
@@ -74,9 +75,9 @@
                 <label><input type="checkbox" id="single-call"> 偏章/卡窿/單釣叫糊</label>
             </div>
             <div class="options">
-                <label><input type="checkbox" id="own-wind-eye"> 自風眼</label>
-                <label><input type="checkbox" id="board-wind-eye"> 場風眼</label>
-                <label><input type="checkbox" id="three-dollar-eye"> 三元眼</label>
+                <label><input type="checkbox" id="seat-wind-eye"> 自風眼</label>
+                <label><input type="checkbox" id="prevailing-wind-eye"> 場風眼</label>
+                <label><input type="checkbox" id="dragon-eye"> 三元眼</label>
             </div>
             <div class="options">
                 <label><input type="checkbox" id="door-ching"> 門前清</label>
@@ -91,7 +92,7 @@
                 <tr>
                     <td>明刻</td>
                     <td>
-                        <select id="minghak28">
+                        <select id="minko28">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -100,7 +101,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="minghak19">
+                        <select id="minko19">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -112,7 +113,7 @@
                 <tr>
                     <td>暗刻</td>
                     <td>
-                        <select id="amhak28">
+                        <select id="anko28">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -121,7 +122,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="amhak19">
+                        <select id="anko19">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -133,7 +134,7 @@
                 <tr>
                     <td>明槓</td>
                     <td>
-                        <select id="minggong28">
+                        <select id="minkan28">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -142,7 +143,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="minggong19">
+                        <select id="minkan19">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -154,7 +155,7 @@
                 <tr>
                     <td>暗槓</td>
                     <td>
-                        <select id="amgong28">
+                        <select id="ankan28">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -163,7 +164,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="amgong19">
+                        <select id="ankan19">
                             <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
