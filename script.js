@@ -101,7 +101,6 @@ function displayGameResults(winnerScore, jongScore, haanScore, culpritScore) {
     genCurrentGameResults(winnerScore, jongScore, haanScore, culpritScore);
     const label = ['A','B','C','D'];
     const gameStat = $('#game-results').data('gameStat');
-    console.log(gameStat)
     gameStat.scores.forEach(function (score, idx) {
         $('#score'+label[idx]).html(score > 0 ? score : score);
         if (score > 0) {
@@ -238,15 +237,12 @@ function addHistory(noWin) {
     let gameStat = $('#game-results').data('gameStat');
     let newScores = [null, null, null, null];
     let games = $('#game-table').data('games');
-    console.log(games)
     if (noWin || gameStat.noWin) {
         newScores = games[games.length-1][1].slice();
-        console.log(newScores)
     } else {
         newScores = games[games.length-1][1].map(function (current, idx) {
             return current + gameStat.scores[idx];
         }).slice();
-        console.log(newScores);
     }
     games.push([gameStat, newScores]);
     $('#game-table').data('games', games);
@@ -275,15 +271,10 @@ function genGameHistoryTable() {
                 let x = item - prev[index];
                 return x != 0 ? x : null;
             });
-            // const idx = {A: 2, B: 3, C: 4, D: 5};
-            // newCells[idx[game.winner]].addClass('win-cell');
-            diff.forEach(function (elem, idx) {
-                if (elem > 0) {
-                    newCells[idx+1].addClass('win-cell');
-                } else if (elem < 0) {
-                    newCells[idx+1].addClass('lose-cell');
-                }
-            });
+            if (game[0].winner) {
+                const label = {A: 1, B: 2, C: 3, D: 4};
+                newCells[label[game[0].winner]].addClass('win-cell');
+            }
         }
         $('.game-table').find('.game-rows')
         .append($('<tr>')
