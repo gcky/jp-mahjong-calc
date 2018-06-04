@@ -17,6 +17,11 @@ select {
 #han {
     font-size: 1rem;
     font-family: Inconsolata, 'Courier New', Courier, monospace;
+    height: auto;
+    margin: 0 5px;
+}
+#han+span {
+    line-height: 35px;
 }
 
 .calc {
@@ -95,7 +100,7 @@ label, .option-link {
 }
 
 .option-link {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 12px;
     padding: 0 10px;
 }
 
