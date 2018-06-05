@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('.tenpai').hide();
     const defaultGameStat = {
         dealer: null,
         winner: null,

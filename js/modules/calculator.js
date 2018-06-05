@@ -25,6 +25,8 @@ var calculator = (function () {
         $('#dealer').prop('checked', false);
         $('#child').prop('checked', true);
         $('#draw').prop('checked', false);
+        $('.tenpai').slideUp();
+        $('.non-draw').slideDown();
         $('#han').val(1).trigger('change');
         $('.hakgong tr td select option:first-child').prop('selected', true);
         $('#winner-id option[value=""]').prop('selected', true);
@@ -234,7 +236,6 @@ $(document).on('change', '#han', function () {
     }
     if ($(this).val() < 2) {
         $('#seven-pairs').prop('checked', false).trigger('change');
-        $('.fu-options').slideUp();
     }
     if ($(this).val() < 5 && !$('#seven-pairs').prop('checked')) {
         $('.fu-options').slideDown();
@@ -243,4 +244,14 @@ $(document).on('change', '#han', function () {
 
 $(function() {
     $('.player-select').on('change', calculator.checkCalcAvailability).change();
+});
+
+$(document).on('click', '#draw', function () {
+    if ($(this).prop('checked')) {
+        $('.tenpai').slideDown();
+        $('.non-draw').slideUp();
+    } else {
+        $('.tenpai').slideUp();
+        $('.non-draw').slideDown();
+    }
 });

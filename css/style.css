@@ -22,6 +22,13 @@ select {
 }
 #han+span {
     line-height: 35px;
+    margin-right: 5px;
+}
+
+.tenpai {
+    display: flex;
+    /* line-height: 1rem; */
+    /* padding: 0; */
 }
 
 .calc {
@@ -53,6 +60,14 @@ select {
     justify-content: center;
     flex-wrap: wrap;
     margin: 10px 0;
+}
+.options.multiplayer span {
+    line-height: 35px;
+    margin-right: 5px;
+}
+.options.multiplayer label {
+    padding: 8px 5px 8px 0;
+    margin: 1px;
 }
 
 .hakgong, .game-results {
@@ -91,7 +106,7 @@ select {
     color: green;
 }
 
-label, .option-link {
+.options label, .option-link {
     border: 1px solid rgba(0,0,0,.3);
     border-radius: 5px;
     padding: 8px;
@@ -100,7 +115,7 @@ label, .option-link {
 }
 
 .option-link {
-    margin: 0 0 0 12px;
+    margin: 0 0 0 5px;
     padding: 0 10px;
 }
 
