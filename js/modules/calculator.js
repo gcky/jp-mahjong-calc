@@ -107,12 +107,12 @@ var calculator = (function () {
             fu += 2;
         }
         if ($('#door-ching').prop('checked') && 
-            !$('#discarder-id').val() == 'self') {
+            !($('#discarder-id').val() == 'self')) {
             fu += 10;
         }
         if ($('#discarder-id').val() == 'self' && 
-            !$('#ping-flower').prop('checked') &&
-            !$('#door-ching').prop('checked')) {
+            !($('#ping-flower').prop('checked')) &&
+            !($('#door-ching').prop('checked'))) {
             fu += 2;
         }
         if ($('#seat-wind-eye').prop('checked')) {
@@ -237,7 +237,7 @@ $(document).on('change', '#han', function () {
     if ($(this).val() < 2) {
         $('#seven-pairs').prop('checked', false).trigger('change');
     }
-    if ($(this).val() < 5 && !$('#seven-pairs').prop('checked')) {
+    if ($(this).val() < 5 && !($('#seven-pairs').prop('checked'))) {
         $('.fu-options').slideDown();
     }
 });
