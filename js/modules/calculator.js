@@ -14,7 +14,9 @@ var calculator = (function () {
         let dealerScore = null;
         let childScore = null;
         let discarderScore = null;
-        [winnerScore, dealerScore, childScore, discarderScore] = calcScores(basicPoints);
+        if (!($('#draw').prop('checked'))) {
+            [winnerScore, dealerScore, childScore, discarderScore] = calcScores(basicPoints);
+        }
         console.log(fu)
         console.log(basicPoints)
         displayGameResults(winnerScore, dealerScore, childScore, discarderScore);
@@ -37,7 +39,7 @@ var calculator = (function () {
 
     var checkCalcAvailability = function () {
         var sels = $('.player-select option:selected[value=""]');
-        $("#calc-btn").attr("disabled", sels.length > 0);
+        $("#calc-btn").attr("disabled", (sels.length > 0 && !($('#draw').prop('checked'))));
     };
 
     var attachCurrentGameStats = function (winnerScore, dealerScore, childScore, discarderScore) {
@@ -68,8 +70,39 @@ var calculator = (function () {
                     gameStat.scores[idx[player]] = childScore;
                 });
             }
+            let richiScores = 0;
+            ['A','B','C','D'].forEach(function (player) {
+                if ($('#richi'+player).prop('checked')) {
+                    gameStat.scores[idx[player]] -= 1000;
+                    richiScores += 1000;
+                }
+            });
+            gameStat.scores[idx[winner]] += richiScores;
         } else {
             gameStat.noWin = true;
+            const tenpais = $('.tenpai-player:checked');
+            if (tenpais.length == 0 || tenpais.length == 4) {
+                gameStat.scores = [0, 0, 0, 0];
+            } else if (tenpais.length == 1) {
+                gameStat.scores[idx[tenpais.first().data('player')]] = 3000;
+                const noTenpais = ['A','B','C','D'].filter(function(elem){
+                    return elem != tenpais.first().data('player'); 
+                });
+                noTenpais.forEach(function (player) {
+                    gameStat.scores[idx[player]] = -1000;
+                });
+            } else if (tenpais.length == 2) {
+                const tenpai1 = tenpais.eq(0).data('player');
+                const tenpai2 = tenpais.eq(1).data('player');
+                gameStat.scores[idx[tenpai1]] = 1500;
+                gameStat.scores[idx[tenpai2]] = 1500;
+                const noTenpais = ['A','B','C','D'].filter(function(elem){
+                    return elem != tenpai1 && elem != tenpai2; 
+                });
+                noTenpais.forEach(function (player) {
+                    gameStat.scores[idx[player]] = -1500;
+                });
+            }
         }
         $('#game-results').data('gameStat', gameStat);
     };
@@ -254,4 +287,5 @@ $(document).on('click', '#draw', function () {
         $('.tenpai').slideUp();
         $('.non-draw').slideDown();
     }
+    calculator.checkCalcAvailability();
 });

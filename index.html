@@ -35,10 +35,10 @@
             </div>
             <div class="tenpai options multiplayer">
                 <span>聽牌</span>
-                <label><input type="checkbox" id="tenpaiA">🐵A</label>
-                <label><input type="checkbox" id="tenpaiB">🐶B</label>
-                <label><input type="checkbox" id="tenpaiC">🐸C</label>
-                <label><input type="checkbox" id="tenpaiD">🐳D</label>
+                <label><input type="checkbox" class="tenpai-player" id="tenpaiA" data-player="A">🐵A</label>
+                <label><input type="checkbox" class="tenpai-player" id="tenpaiB" data-player="B">🐶B</label>
+                <label><input type="checkbox" class="tenpai-player" id="tenpaiC" data-player="C">🐸C</label>
+                <label><input type="checkbox" class="tenpai-player" id="tenpaiD" data-player="D">🐳D</label>
             </div>
             <div class="non-draw">
                 <div class="options">
@@ -281,7 +281,7 @@
                     </tr>
                     <tr>
                         <td colspan="6">
-                            <button type="button" class="amend-btn long" id="add-nowin">新增流局</button>
+                            <button type="button" class="amend-btn long" id="add-nowin">複製最近一局</button>
                             <button type="button" class="amend-btn long" id="remove-last">刪除最近一局</button>
                         </td>
                     </tr>

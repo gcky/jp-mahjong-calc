@@ -4,7 +4,7 @@ var gameHistory = (function () {
         let gameStat = $('#game-results').data('gameStat');
         let newScores = [null, null, null, null];
         let games = $('#game-table').data('games');
-        if (noWin || gameStat.noWin) {
+        if (noWin) {
             newScores = games[games.length-1][1].slice();
         } else {
             newScores = games[games.length-1][1].map(function (current, idx) {
