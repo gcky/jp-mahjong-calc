@@ -44,21 +44,29 @@ var calculator = (function () {
 
     var attachCurrentGameStats = function (winnerScore, dealerScore, childScore, discarderScore) {
         const idx = {A: 0, B: 1, C: 2, D: 3};
-        const winner = $('#winner-id').val();
-        const discarder = $('#discarder-id').val();
-        const dealer = $('#dealer-id').val();
-        const child = ['A','B','C','D'].filter(function(elem){
-            return elem != winner && elem != dealer; 
-        });
         let gameStat = {
-            dealer: dealer,
-            winner: winner,
-            discarder: discarder,
-            child: child,
-            noWin: false,
+            dealer: null,
+            winner: null,
+            discarder: null,
+            child: null,
+            noWin: true,
             scores: [null, null, null, null]
         };
         if (winnerScore) {
+            const winner = $('#winner-id').val();
+            const discarder = $('#discarder-id').val();
+            const dealer = $('#dealer-id').val();
+            const child = ['A','B','C','D'].filter(function(elem){
+                return elem != winner && elem != dealer; 
+            });
+            gameStat = {
+                dealer: dealer,
+                winner: winner,
+                discarder: discarder,
+                child: child,
+                noWin: false,
+                scores: [null, null, null, null]
+            };
             gameStat.scores[idx[winner]] = winnerScore;
             if (discarderScore) {
                 gameStat.scores[idx[discarder]] = discarderScore;
@@ -130,6 +138,13 @@ var calculator = (function () {
                 discarderScore = -Math.ceil((4*basicPoints)/100)*100;
                 winnerScore = -discarderScore;
             }
+        }
+        var honbaMultiplier = 300;
+        winnerScore += Number($('#honba').val()) * honbaMultiplier;
+        if ($('#discarder-id').val() == 'self') {
+            childScore -= Number($('#honba').val()) * (honbaMultiplier/3);
+        } else {
+            discarderScore -= Number($('#honba').val()) * honbaMultiplier;
         }
         return [winnerScore, dealerScore, childScore, discarderScore];
     };
