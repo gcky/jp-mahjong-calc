@@ -8,7 +8,7 @@ $(document).ready(function() {
         noWin: false,
         scores: [null, null, null, null]
     };
-    $('#game-table').data('games', [[defaultGameStat, [20000, 20000, 20000, 20000]]]);
+    $('#game-table').data('games', [[defaultGameStat, [25000, 25000, 25000, 25000]]]);
     $('#game-results').data('gameStat', defaultGameStat);
     gameHistory.genGameHistoryTable();
 });

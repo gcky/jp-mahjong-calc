@@ -19,9 +19,15 @@
 <body id="home">
     <div class="container">
         <div class="calc">
-            <h1>🀄日麻計分機</h1>
+            <h1 class="app-title">🀄日麻計分機</h1>
             <div class="options">
-                <label><input type="checkbox" id="draw"> 流局</label>
+                <select class="player-select" id="dealer-id">
+                    <option value="" disabled>莊家</option>
+                    <option value="A" selected>🐵A莊</option>
+                    <option value="B">🐶B莊</option>
+                    <option value="C">🐸C莊</option>
+                    <option value="D">🐳D莊</option>
+                </select>
                 <select class="player-select" id="honba">
                     <option value="0" selected>平場</option>
                     <option value="1">1本場</option>
@@ -32,6 +38,7 @@
                     <option value="6">6本場</option>
                     <option value="7">7本場</option>
                 </select>
+                <label><input type="checkbox" id="draw"> 流局</label>
             </div>
             <div class="tenpai options multiplayer">
                 <span>聽牌</span>
@@ -42,13 +49,6 @@
             </div>
             <div class="non-draw">
                 <div class="options">
-                    <select class="player-select" id="dealer-id">
-                        <option value="" disabled selected>莊家</option>
-                        <option value="A">🐵A莊</option>
-                        <option value="B">🐶B莊</option>
-                        <option value="C">🐸C莊</option>
-                        <option value="D">🐳D莊</option>
-                    </select>
                     <select class="player-select" id="winner-id">
                         <option value="" disabled selected>糊家</option>
                         <option value="A">🐵A糊</option>
@@ -237,7 +237,7 @@
         <div class="game-history">
             <h2>📊分數記錄</h2>
             <div class="options">
-                <input type="number" id="start-points" value="20000" min="0" step="5000" onclick="this.select()">&nbsp;分
+                <input type="number" id="start-points" value="25000" min="0" step="5000" onclick="this.select()">&nbsp;分
                 <button type="button" id="reset-hist-btn">重設</button>
             </div>
             <table id="game-table" class="game-table">

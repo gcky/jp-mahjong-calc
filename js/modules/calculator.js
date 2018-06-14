@@ -87,6 +87,7 @@ var calculator = (function () {
             });
             gameStat.scores[idx[winner]] += richiScores;
         } else {
+            gameStat.dealer = $('#dealer-id').val();
             gameStat.noWin = true;
             const tenpais = $('.tenpai-player:checked');
             if (tenpais.length == 0 || tenpais.length == 4) {

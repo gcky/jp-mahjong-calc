@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
 }
 
@@ -35,15 +36,32 @@ select {
     text-align: center;
     max-width: 350px;
     min-width: 292px;
-    border: 1px solid rgba(0,0,0,.3);
-    border-radius: 20px;
+    /* border: 1px solid rgba(0,0,0,.3); */
+    box-shadow: 0 2px 10px 1px rgba(0,0,0,.2);
+    border-radius: 10px;
     margin: 5px;
     flex: 1;
+    overflow: hidden;
+    margin-top: 20px;
 }
 @media only screen and (max-width: 600px) {
     .calc {
         max-width: none;
     }
+}
+@media only screen and (max-width: 420px) {
+    .calc {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
+.app-title {
+    background: #2979FF;
+    margin: 0 0 15px 0;
+    padding: 15px 0;
+    color: white;
 }
 
 .container {
