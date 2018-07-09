@@ -24,8 +24,8 @@
                 <select class="player-select" id="dealer-id">
                     <option value="" disabled>莊家</option>
                     <option value="A" selected>🐵A莊</option>
-                    <option value="B">🐶B莊</option>
-                    <option value="C">🐸C莊</option>
+                    <option value="B">🦊B莊</option>
+                    <option value="C">🦁C莊</option>
                     <option value="D">🐳D莊</option>
                 </select>
                 <select class="player-select" id="honba">
@@ -43,8 +43,8 @@
             <div class="tenpai options multiplayer">
                 <span>聽牌</span>
                 <label><input type="checkbox" class="tenpai-player" id="tenpaiA" data-player="A">🐵A</label>
-                <label><input type="checkbox" class="tenpai-player" id="tenpaiB" data-player="B">🐶B</label>
-                <label><input type="checkbox" class="tenpai-player" id="tenpaiC" data-player="C">🐸C</label>
+                <label><input type="checkbox" class="tenpai-player" id="tenpaiB" data-player="B">🦊B</label>
+                <label><input type="checkbox" class="tenpai-player" id="tenpaiC" data-player="C">🦁C</label>
                 <label><input type="checkbox" class="tenpai-player" id="tenpaiD" data-player="D">🐳D</label>
             </div>
             <div class="non-draw">
@@ -52,24 +52,25 @@
                     <select class="player-select" id="winner-id">
                         <option value="" disabled selected>糊家</option>
                         <option value="A">🐵A糊</option>
-                        <option value="B">🐶B糊</option>
-                        <option value="C">🐸C糊</option>
+                        <option value="B">🦊B糊</option>
+                        <option value="C">🦁C糊</option>
                         <option value="D">🐳D糊</option>
                     </select>
                     <select class="player-select" id="discarder-id">
                         <option id="discarder-title" value="" disabled selected>出統者</option>
                         <option id="discarder-self" value="self">自摸</option>
                         <option id="discarderA" value="A">🐵A出統</option>
-                        <option id="discarderB" value="B">🐶B出統</option>
-                        <option id="discarderC" value="C">🐸C出統</option>
+                        <option id="discarderB" value="B">🦊B出統</option>
+                        <option id="discarderC" value="C">🦁C出統</option>
                         <option id="discarderD" value="D">🐳D出統</option>
                     </select>
+                    <label><input type="checkbox" id="threes"> 三人</label>
                 </div>
                 <div id="richi" class="options multiplayer">
                     <span>立直</span>
                     <label><input type="checkbox" id="richiA">🐵A</label>
-                    <label><input type="checkbox" id="richiB">🐶B</label>
-                    <label><input type="checkbox" id="richiC">🐸C</label>
+                    <label><input type="checkbox" id="richiB">🦊B</label>
+                    <label><input type="checkbox" id="richiC">🦁C</label>
                     <label><input type="checkbox" id="richiD">🐳D</label>
                 </div>
                 <div class="options">
@@ -214,12 +215,12 @@
                     <td class="score" id="scoreA"></td>
                 </tr>
                 <tr>
-                    <td>🐶</td>
+                    <td>🦊</td>
                     <td>B</td>
                     <td class="score" id="scoreB"></td>
                 </tr>
                 <tr>
-                    <td>🐸</td>
+                    <td>🦁</td>
                     <td>C</td>
                     <td class="score" id="scoreC"></td>
                 </tr>
@@ -245,8 +246,8 @@
                     <th>局</th>
                     <th>莊</th>
                     <th>🐵A</th>
-                    <th>🐶B</th>
-                    <th>🐸C</th>
+                    <th>🦊B</th>
+                    <th>🦁C</th>
                     <th>🐳D</th>
                 </thead>
                 <tbody class="game-rows"></tbody>
