@@ -41,6 +41,7 @@ var calculator = (function () {
     };
 
     var attachCurrentGameStats = function (winnerScore, dealerScore, childScore, discarderScore) {
+        const threes = $('#threes').prop('checked');
         const idx = {A: 0, B: 1, C: 2, D: 3};
         let gameStat = {
             dealer: null,
@@ -55,7 +56,11 @@ var calculator = (function () {
             const discarder = $('#discarder-id').val();
             const dealer = $('#dealer-id').val();
             const child = ['A','B','C','D'].filter(function(elem){
-                return elem != winner && elem != dealer; 
+                let toReturn = elem != winner && elem != dealer;
+                if (threes && elem == 'D') {
+                    toReturn = false;
+                }
+                return toReturn;
             });
             gameStat = {
                 dealer: dealer,
@@ -115,6 +120,7 @@ var calculator = (function () {
     };
 
     var calcScores = function (basicPoints) {
+        const threes = $('#threes').prop('checked');
         let winnerScore = 0;
         let dealerScore = null;
         let childScore = null;
@@ -123,7 +129,7 @@ var calculator = (function () {
         if (dealerWin) {
             if ($('#discarder-id').val() == 'self') {
                 childScore = -Math.ceil((2*basicPoints)/100)*100;
-                winnerScore = -3*childScore;
+                winnerScore = threes ? -2*childScore : -3*childScore;
             } else {
                 discarderScore = -Math.ceil((6*basicPoints)/100)*100;
                 winnerScore = -discarderScore;
@@ -132,7 +138,7 @@ var calculator = (function () {
             if ($('#discarder-id').val() == 'self') {
                 dealerScore = -Math.ceil((2*basicPoints)/100)*100;
                 childScore = -Math.ceil(basicPoints/100)*100;
-                winnerScore = -dealerScore-2*childScore;
+                winnerScore = -dealerScore-(threes ? 1 : 2)*childScore;
             } else {
                 discarderScore = -Math.ceil((4*basicPoints)/100)*100;
                 winnerScore = -discarderScore;
