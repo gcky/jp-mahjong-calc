@@ -2,6 +2,11 @@ body {
     margin: 0;
     font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
 }
+@media only screen and (max-width: 600px) {
+    body {
+        overflow: hidden;
+    }
+}
 
 input[type="number"] {
     width: 50px;
@@ -57,6 +62,9 @@ select {
     margin-top: 20px;
 }
 @media only screen and (max-width: 600px) {
+    body {
+        overflow: initial;
+    }
     .calc {
         max-width: none;
     }
