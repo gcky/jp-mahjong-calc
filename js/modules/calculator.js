@@ -21,7 +21,7 @@ var calculator = (function () {
     };
 
     var resetCalc = function () {
-        $('input:checkbox').prop('checked', false);
+        $('input:checkbox:not(#threes)').prop('checked', false);
         $('#dealer').prop('checked', false);
         $('#child').prop('checked', true);
         $('#draw').prop('checked', false);
