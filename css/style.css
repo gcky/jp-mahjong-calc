@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+    touch-action: manipulation;
 }
 @media only screen and (min-width: 600px) {
     body {
