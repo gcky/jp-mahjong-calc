@@ -2,9 +2,12 @@ body {
     margin: 0;
     font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
     body {
         overflow: hidden;
+    }
+    .calc, .game-table {
+        margin-bottom: 100px !important;
     }
 }
 
@@ -35,7 +38,7 @@ select {
     display: flex;
 }
 
-.calc-container, .history-container {
+.calc-container, .game-history {
     height: 100vh;
     overflow-y: auto;
     overflow-x: visible;
