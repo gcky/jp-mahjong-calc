@@ -223,7 +223,7 @@ var calculator = (function () {
     };
 
     var displayGameResults = function (winnerScore, dealerScore, childScore, discarderScore, han, fu) {
-        $('#hanfuresults').html(han + "番 " + fu + "符");
+        $('#hanfuresults').html(han + "翻 " + (han <= 4 ? fu + "符" : ""));
         $('.game-results tr td:nth-child(3)').html('');
         $('.game-results tr td:nth-child(3)').removeClass('win');
         attachCurrentGameStats(winnerScore, dealerScore, childScore, discarderScore);
