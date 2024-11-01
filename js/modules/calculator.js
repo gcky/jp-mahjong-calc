@@ -16,6 +16,9 @@ var calculator = (function () {
         let discarderScore = null;
         if (!($('#draw').prop('checked'))) {
             [winnerScore, dealerScore, childScore, discarderScore] = calcScores(basicPoints);
+        } else {
+            han = 0;
+            fu = 0;
         }
         displayGameResults(winnerScore, dealerScore, childScore, discarderScore, han, fu);
     };
