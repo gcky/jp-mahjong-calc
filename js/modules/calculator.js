@@ -32,7 +32,7 @@ var calculator = (function () {
         $('#winner-id option[value=""]').prop('selected', true);
         $('#discarder-id option[value=""]').prop('selected', true);
         checkCalcAvailability();
-        displayGameResults(null, null, null, null, null, null);
+        displayGameResults(null, null, null, null, 0, 0);
     };
 
     var checkCalcAvailability = function () {
