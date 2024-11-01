@@ -93,6 +93,7 @@ var calculator = (function () {
             gameStat.dealer = $('#dealer-id').val();
             gameStat.noWin = true;
             const tenpais = $('.tenpai-player:checked');
+            const untenpais = $('.tenpai-player:not(:checked)');
             if (tenpais.length == 0 || tenpais.length == 4) {
                 gameStat.scores = [0, 0, 0, 0];
             } else if (tenpais.length == 1) {
@@ -113,6 +114,14 @@ var calculator = (function () {
                 });
                 noTenpais.forEach(function (player) {
                     gameStat.scores[idx[player]] = -1500;
+                });
+            } else if (tenpais.length == 3) {
+                gameStat.scores[idx[untenpais.first().data('player')]] = -3000;
+                const yesTenpais = ['A','B','C','D'].filter(function(elem){
+                    return elem != untenpais.first().data('player'); 
+                });
+                yesTenpais.forEach(function (player) {
+                    gameStat.scores[idx[player]] = 1000;
                 });
             }
         }
