@@ -20,6 +20,10 @@ var calculator = (function () {
             han = 0;
             fu = 0;
         }
+        if ($('#seven-pairs').prop('checked')) {
+            han += 1;
+            fu = 25;
+        }
         displayGameResults(winnerScore, dealerScore, childScore, discarderScore, han, fu);
     };
 
