@@ -17,7 +17,7 @@ var calculator = (function () {
         if (!($('#draw').prop('checked'))) {
             [winnerScore, dealerScore, childScore, discarderScore] = calcScores(basicPoints);
         }
-        displayGameResults(winnerScore, dealerScore, childScore, discarderScore);
+        displayGameResults(winnerScore, dealerScore, childScore, discarderScore, han, fu);
     };
 
     var resetCalc = function () {
@@ -32,7 +32,7 @@ var calculator = (function () {
         $('#winner-id option[value=""]').prop('selected', true);
         $('#discarder-id option[value=""]').prop('selected', true);
         checkCalcAvailability();
-        displayGameResults(null, null, null, null);
+        displayGameResults(null, null, null, null, null, null);
     };
 
     var checkCalcAvailability = function () {
@@ -219,7 +219,8 @@ var calculator = (function () {
         return basicPoints;
     };
 
-    var displayGameResults = function (winnerScore, dealerScore, childScore, discarderScore) {
+    var displayGameResults = function (winnerScore, dealerScore, childScore, discarderScore, han, fu) {
+        $('#hanfuresults').html(han + "番 " + fu + "符");
         $('.game-results tr td:nth-child(3)').html('');
         $('.game-results tr td:nth-child(3)').removeClass('win');
         attachCurrentGameStats(winnerScore, dealerScore, childScore, discarderScore);
